@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-border: #ececec;
+  --color-border-strong: #d4d4d4;
+  --color-fg: #18181b;
+  --color-fg-muted: #71717a;
+  --color-fg-subtle: #a1a1aa;
+  --color-accent: #2563eb;
+  --color-accent-soft: #eff6ff;
+  --color-status-bid: #fef3c7;
+  --color-status-bid-fg: #92400e;
+  --color-status-progress: #dbeafe;
+  --color-status-progress-fg: #1e3a8a;
+  --font-sans: "Pretendard Variable", Pretendard, ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR",
+    sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  *::selection {
+    background: var(--color-accent-soft);
+  }
+}
+
+@layer utilities {
+  .hairline {
+    border: 1px solid var(--color-border);
+  }
+  .hairline-b {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .hairline-t {
+    border-top: 1px solid var(--color-border);
+  }
+  .hairline-r {
+    border-right: 1px solid var(--color-border);
+  }
+  .focus-ring {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  .focus-ring:focus-visible {
+    outline-color: var(--color-accent);
+  }
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
+/* Inline editable cell input — flush with cell, no chrome until focus */
+.cell-input {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 6px 8px;
+  width: 100%;
+  font-size: 0.8125rem;
+  color: var(--color-fg);
+  transition: background 0.12s, border-color 0.12s;
+}
+.cell-input:hover {
+  background: var(--color-bg);
+}
+.cell-input:focus {
+  background: #fff;
+  border-color: var(--color-accent);
+  outline: none;
+}
+.cell-input.is-empty {
+  color: var(--color-fg-subtle);
+}
