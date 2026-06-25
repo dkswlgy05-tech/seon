@@ -4,10 +4,17 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg">
       <div className="w-full max-w-sm space-y-6 rounded-2xl border border-border bg-surface p-8 shadow-sm">
-        <div className="space-y-1 text-center">
+        <div className="space-y-2 text-center">
+          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-lg font-semibold text-white">
+            미
+          </div>
           <h1 className="text-xl font-semibold text-fg">미래사업팀 대시보드</h1>
-          <p className="text-sm text-fg-muted">팀 계정으로 로그인해주세요</p>
+          <p className="text-sm text-fg-muted">
+            팀 Google 계정으로 로그인하세요.<br />
+            처음 방문이라면 자동으로 가입됩니다.
+          </p>
         </div>
+
         <form
           action={async () => {
             "use server";
@@ -24,9 +31,13 @@ export default function LoginPage() {
               <path d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z" fill="#FBBC05"/>
               <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 7.293C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
             </svg>
-            Google로 로그인
+            Google로 로그인 / 회원가입
           </button>
         </form>
+
+        <p className="text-center text-xs text-fg-subtle">
+          미래사업팀 전용 서비스입니다
+        </p>
       </div>
     </div>
   );
