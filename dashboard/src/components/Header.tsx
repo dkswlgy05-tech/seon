@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 import { useDashboardStore, useActiveWeek } from "@/store/useDashboardStore";
 
 export function Header() {
@@ -9,6 +10,7 @@ export function Header() {
   const setActiveWeek = useDashboardStore((s) => s.setActiveWeek);
   const addWeek = useDashboardStore((s) => s.addWeek);
   const [downloading, setDownloading] = useState(false);
+  const { data: session } = useSession();
 
   async function handleDownload() {
     if (!week) return;
@@ -83,6 +85,28 @@ export function Header() {
           >
             {downloading ? "생성 중…" : "HWPX 다운로드"}
           </button>
+
+          {session?.user && (
+            <div className="flex items-center gap-2 pl-2 border-l border-border">
+              {session.user.image && (
+                <img
+                  src={session.user.image}
+                  alt={session.user.name ?? ""}
+                  className="h-7 w-7 rounded-full"
+                />
+              )}
+              <span className="text-sm text-fg-muted hidden sm:block">
+                {session.user.name}
+              </span>
+              <button
+                type="button"
+                onClick={() => signOut({ callbackUrl: "/login" })}
+                className="hairline rounded-md bg-surface px-3 py-1.5 text-sm text-fg-muted hover:bg-bg focus-ring"
+              >
+                로그아웃
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </header>
